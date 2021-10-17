@@ -1,0 +1,131 @@
+// Theme colors
+$primary-color: #6123d9;
+$secondary-color: #232327;
+$font-color: #0c0f12;
+$bg-color: #ffffff;
+$bg-light: #e8e8e8;
+$bg-dark: #000000;
+
+//Fonts
+$font-family: "Montserrat", sans-serif;
+$font-size: 16px;
+$line-height: 1.618;
+$font-weight: 400;
+
+@mixin trans($transition: default, $pseudo: nope, $pseudo_trans: nope) {
+  @if $transition == default {
+    $transition: all 0.3s ease;
+  }
+  @if $transition != null {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    transition: $transition;
+  }
+  @if $pseudo ==
+    before or
+    $pseudo ==
+    after or
+    $pseudo ==
+    hover or
+    $pseudo ==
+    active or
+    $pseudo ==
+    focus or
+    $pseudo ==
+    target
+  {
+    &:#{$pseudo} {
+      @if $pseudo_trans != nope {
+        $transition: $pseudo_trans;
+      }
+      -webkit-transition: $transition;
+      -moz-transition: $transition;
+      transition: $transition;
+    }
+  }
+}
+@mixin center($xy: xy) {
+  @if $xy == xy {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    @include transform(translateX(-50%) translateY(-50%));
+  } @else if $xy == x {
+    left: 50%;
+    right: auto;
+    @include transform(translateX(-50%));
+  } @else if $xy == y {
+    top: 50%;
+    bottom: auto;
+    @include transform(translateY(-50%));
+  }
+}
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+@mixin flex($val: display) {
+  @if $val == display {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  } @else {
+    -moz-flex: $val;
+    -webkit-flex: $val;
+    flex: $val;
+  }
+}
+@mixin justify-content($value: center) {
+  -webkit-box-pack: $value;
+  -ms-flex-pack: $value;
+  -ms-justify-content: $value;
+  -webkit-justify-content: $value;
+  justify-content: $value;
+}
+@mixin flex-direction($value) {
+  -ms-flex-direction: $value;
+  -webkit-flex-direction: $value;
+  flex-direction: $value;
+}
+@mixin flex-flow($value) {
+  -ms-flex-flow: $value;
+  -webkit-flex-flow: $value;
+  flex-flow: $value;
+}
+@mixin flex-wrap($value: wrap) {
+  -ms-flex-wrap: $value;
+  -webkit-flex-wrap: $value;
+  flex-wrap: $value;
+}
+@mixin align-items($value: center) {
+  -webkit-align-items: $value;
+  align-items: $value;
+}
+@mixin align-content($value: center) {
+  -webkit-align-content: $value;
+  align-content: $value;
+}
+@mixin object-fit($val: cover) {
+  @if $val == contain {
+    font-family: "object-fit: contain;";
+    object-fit: contain;
+  } @else {
+    font-family: "object-fit: cover; object-position: 50% 50%;";
+    object-fit: cover;
+  }
+}
+@mixin lineclamp($lineheight, $lines) {
+  line-height: $lineheight !important;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
